@@ -6,6 +6,24 @@
   background-size: cover;
 }
 
+/* NAVBAR RESTAURANT */
+.format_restaurant {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  background: url(/public/images/restaurant_bg.png);
+  background-size: cover;
+}
+
+/* OTHERS HEADER */
+.format_others {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  background: url(/public/images/others_bg.png);
+  background-size: cover;
+}
+
 .home_navbar .navbar_config {
   width: 1290px;
   height: 46px;
