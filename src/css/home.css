@@ -199,19 +199,17 @@
   width: 100%;
   background: #0c0e12;
   display: flex;
-  box-shadow: 0px -8px 90px rgba(215 215 255);
+  box-shadow: 0px -8px 90px rgb(215 215 255);
   transform: scale(1.5);
   overflow: hidden;
 }
-
-/* EVENTS */
 
 .homepage .events_frame {
   margin-top: 45px;
   width: 100%;
   height: 700px;
   display: flex;
-  overflow: "hidden";
+  overflow: hidden;
 }
 
 .homepage .events_main {
@@ -220,7 +218,6 @@
   display: flex;
   flex-direction: column;
 }
-
 .homepage .events_main .events_text {
   position: relative;
   width: auto;
@@ -233,7 +230,7 @@
 .homepage .events_main .prev_next_frame {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 250px;
   height: 24px;
@@ -256,7 +253,7 @@
   justify-content: space-between;
 }
 
-.homepage .events_info .events_info_frame {
+.homepage .events_info_frame {
   position: relative;
   width: 579px;
   height: 447px;
@@ -351,21 +348,30 @@
   color: #4f547b;
 }
 
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .homepage .swiper-wrapper {
   display: flex;
   flex-direction: row;
-}
-
-.homepage .swiper-pagination-bullet {
-  margin-right: 5px;
-  width: 8px;
-  height: 8px;
-  text-align: center;
-  opacity: 1;
-  background: #ffffff;
-  border-radius: 50%;
-}
-.homepage .swiper-pagination-bullet-active {
-  background: #007aff;
-  border-radius: 50%;
 }
