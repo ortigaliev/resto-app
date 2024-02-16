@@ -3,7 +3,7 @@ import React from "react";
 
 export function Events() {
   return (
-    <div className="top_restaurant_frame">
+    <div className="events_frame">
       <Container>Events</Container>
     </div>
   );

@@ -76,15 +76,10 @@
   color: #e3c08d;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 24ad6b7f568ce532fd8722d365e56b90925f9d6a
 /* BEST RESTAURANT COMPONENT */
 .homepage .best_restaurant_frame {
   display: flex;
   width: 100%;
-<<<<<<< HEAD
   height: 775px;
   background: #0b0e11;
 }
@@ -188,6 +183,8 @@
   line-height: 36px;
 }
 
+/* ADS Section */
+
 .homepage .ads_restaurant_frame {
   width: 100%;
   height: 693px;
@@ -206,8 +203,3 @@
   transform: scale(1.5);
   overflow: hidden;
 }
-=======
-  height: 755px;
-  background: #0b0e11;
-}
->>>>>>> 24ad6b7f568ce532fd8722d365e56b90925f9d6a
