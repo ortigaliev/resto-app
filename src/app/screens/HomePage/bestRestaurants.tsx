@@ -16,7 +16,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 
 export function BestRestaurants() {
   return (
-    <div className="top_restaurant_frame">
+    <div className="best_restaurant_frame">
       <img
         src={"icons/best_icon.svg"}
         alt="BestRestaurantIcon"
@@ -26,7 +26,7 @@ export function BestRestaurants() {
           transform: "rotate(90 deg)",
         }}
       />
-      <Container sx={{ mt: "153px" }}>
+      <Container sx={{ paddingTop: "153px" }}>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box sx={{ mb: "45px" }} className="category_title">
             Best Restaurants
