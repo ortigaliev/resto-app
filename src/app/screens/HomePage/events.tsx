@@ -1,5 +1,5 @@
 import { Box, Stack } from "@mui/joy";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import React from "react";
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -47,7 +47,7 @@ export function Events() {
       <Container sx={{ overflow: "hidden" }}>
         <Stack className={"events_main"}>
           <Box className={"events_text"}>
-            <span className="category_title">Events</span>
+            <Typography className="category_title">Events</Typography>
           </Box>
 
           <Swiper
