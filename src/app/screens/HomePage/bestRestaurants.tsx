@@ -36,7 +36,10 @@ export function BestRestaurants() {
               <Card variant="outlined" sx={{ minWidth: 320, mr: "35px" }}>
                 <CardOverflow>
                   <AspectRatio ratio="1">
-                    <img src="/images/burak.jpg" alt="Best restaurantimg" />
+                    <img
+                      src="/images/resto/burak.jpg"
+                      alt="Best restaurantimg"
+                    />
                   </AspectRatio>
                   <IconButton
                     aria-label="Like minimal photography"
@@ -130,7 +133,10 @@ export function BestRestaurants() {
               <Card variant="outlined" sx={{ minWidth: 320, mr: "35px" }}>
                 <CardOverflow>
                   <AspectRatio ratio="1">
-                    <img src="/images/burak.jpg" alt="Best restaurantimg" />
+                    <img
+                      src="/images/resto/burak.jpg"
+                      alt="Best restaurantimg"
+                    />
                   </AspectRatio>
                   <IconButton
                     aria-label="Like minimal photography"
@@ -224,7 +230,10 @@ export function BestRestaurants() {
               <Card variant="outlined" sx={{ minWidth: 320, mr: "35px" }}>
                 <CardOverflow>
                   <AspectRatio ratio="1">
-                    <img src="/images/burak.jpg" alt="Best restaurantimg" />
+                    <img
+                      src="/images/resto/burak.jpg"
+                      alt="Best restaurantimg"
+                    />
                   </AspectRatio>
                   <IconButton
                     aria-label="Like minimal photography"
@@ -318,7 +327,10 @@ export function BestRestaurants() {
               <Card variant="outlined" sx={{ minWidth: 320, mr: "35px" }}>
                 <CardOverflow>
                   <AspectRatio ratio="1">
-                    <img src="/images/burak.jpg" alt="Best restaurantimg" />
+                    <img
+                      src="/images/resto/burak.jpg"
+                      alt="Best restaurantimg"
+                    />
                   </AspectRatio>
                   <IconButton
                     aria-label="Like minimal photography"

@@ -69,7 +69,7 @@ export function AllRestaurants() {
                   >
                     <CardOverflow>
                       <AspectRatio ratio={"1"}>
-                        <img src="/images/burak.jpg" alt="AllRestoImg" />
+                        <img src="/images/resto/burak.jpg" alt="AllRestoImg" />
                       </AspectRatio>
                       <IconButton
                         aria-label="Like minimal photography"

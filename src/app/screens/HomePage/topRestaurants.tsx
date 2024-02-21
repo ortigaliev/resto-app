@@ -33,7 +33,7 @@ export function TopRestaurants() {
               >
                 <CardCover>
                   <img
-                    src="/images/baraka.jpg"
+                    src="/images/resto/baraka.jpg"
                     loading="lazy"
                     alt="TopResPic"
                   />
@@ -128,7 +128,7 @@ export function TopRestaurants() {
               >
                 <CardCover>
                   <img
-                    src="/images/baraka.jpg"
+                    src="/images/resto/baraka.jpg"
                     loading="lazy"
                     alt="TopResPic"
                   />
@@ -223,7 +223,7 @@ export function TopRestaurants() {
               >
                 <CardCover>
                   <img
-                    src="/images/baraka.jpg"
+                    src="/images/resto/baraka.jpg"
                     loading="lazy"
                     alt="TopResPic"
                   />
@@ -318,7 +318,7 @@ export function TopRestaurants() {
               >
                 <CardCover>
                   <img
-                    src="/images/baraka.jpg"
+                    src="/images/resto/baraka.jpg"
                     loading="lazy"
                     alt="TopResPic"
                   />

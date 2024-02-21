@@ -500,7 +500,7 @@
   width: 216px;
   height: 200px;
   transform: matrix(1, 0, 0, 1, 0, 0);
-  background: url("/public/images/burak.jpg");
+  background: url("/public/images/resto/burak.jpg");
   background-size: cover;
 }
 
@@ -509,6 +509,6 @@
   width: 216px;
   height: 200px;
   transform: matrix(-1, 0, 0, 1, 0, 0);
-  background: url("/public/images/burak.jpg");
+  background: url("/public/images/resto/burak.jpg");
   background-size: cover;
 }
