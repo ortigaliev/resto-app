@@ -18,7 +18,7 @@ export function BestRestaurants() {
   return (
     <div className="best_restaurant_frame">
       <img
-        src={"icons/best_icon.svg"}
+        src={"/icons/best_icon.svg"}
         alt="BestRestaurantIcon"
         style={{
           position: "absolute",
