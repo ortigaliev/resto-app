@@ -35,32 +35,25 @@ function App() {
 
       <Switch>
         <Route path="/restaurant">
-          {" "}
-          <RestaurantPage />{" "}
+          <RestaurantPage />
         </Route>
         <Route path="/community">
-          {" "}
-          <CommunityPage />{" "}
+          <CommunityPage />
         </Route>
         <Route path="/order">
-          {" "}
-          <OrderPage />{" "}
+          <OrderPage />
         </Route>
         <Route path="/member-page">
-          {" "}
-          <MemberPage />{" "}
+          <MemberPage />
         </Route>
         <Route path="/help">
-          {" "}
-          <HelpPage />{" "}
+          <HelpPage />
         </Route>
         <Route path="/login">
-          {" "}
-          <LoginPage />{" "}
+          <LoginPage />
         </Route>
         <Route path="/">
-          {" "}
-          <Home />{" "}
+          <Home />
         </Route>
       </Switch>
 

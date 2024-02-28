@@ -8,11 +8,11 @@ import TabList from "@material-ui/lab/TabList";
 import TabPanel from "@material-ui/lab/TabPanel";
 
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import PersonIcon from "@mui/icons-material/Person";
 
 import PausedOrders from "../../components/order/pausedOrder";
 
 import FinishedOrders from "../../components/order/finishedOrder";
-import PersonIcon from "@mui/icons-material/Person";
 import { ProcessOrders } from "../../components/order/processOrder";
 
 export function OrderPage() {
