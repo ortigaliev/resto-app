@@ -6,8 +6,11 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Button from "@mui/material/Button";
-
+import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
+import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import Tab from "@mui/material/Tab";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
@@ -17,15 +20,18 @@ import { MemberPosts } from "./memberPosts";
 import { MemberFollowers } from "./memberFollowers";
 import { MemberFollowing } from "./memberFollowing";
 import { MySettings } from "./mySettings";
-import { TabContext, TabList, TabPanel } from "@material-ui/lab";
+import { TabList } from "@material-ui/lab";
+import TabPanel from "@material-ui/lab/TabPanel";
+import TabContext from "@material-ui/lab/TabContext";
 
 export function VisitMyPage(props: any) {
   //INITIALIZIATION
-  const [value, setValue] = useState("6");
+  const [value, setValue] = useState("1");
 
   // HANDLERS
   const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
+    console.log("newValue: ", newValue);
   };
 
   return (
@@ -66,6 +72,7 @@ export function VisitMyPage(props: any) {
                   </Box>
                 </TabPanel>
 
+                {/* Followers */}
                 <TabPanel value={"2"}>
                   <Box className={"menu_name"}>Followers</Box>
                   <Box className={"menu_content"}>
@@ -73,6 +80,7 @@ export function VisitMyPage(props: any) {
                   </Box>
                 </TabPanel>
 
+                {/* Following */}
                 <TabPanel value={"3"}>
                   <Box className={"menu_name"}>Following</Box>
                   <Box className={"menu_content"}>
@@ -80,16 +88,19 @@ export function VisitMyPage(props: any) {
                   </Box>
                 </TabPanel>
 
+                {/* Create an article */}
                 <TabPanel value={"4"}>
                   <Box className={"menu_name"}>Create an Artice</Box>
                   <Box className={"write_content"}></Box>
                 </TabPanel>
 
+                {/* Cosen Article */}
                 <TabPanel value={"5"}>
                   <Box className={"menu_name"}>Chosen Article</Box>
                   <Box className={"menu_content"}></Box>
                 </TabPanel>
 
+                {/* Setting */}
                 <TabPanel value={"6"}>
                   <Box className={"menu_name"}>Settings</Box>
                   <Box className={"menu_content"}>
@@ -117,10 +128,7 @@ export function VisitMyPage(props: any) {
                       alt="Setting user img"
                     />
                     <div className="order_user_icon_box">
-                      <img
-                        src=""
-                        alt="setting user icon"
-                      />
+                      <AccountCircleOutlinedIcon sx={{ color: "#000" }} />
                     </div>
                   </div>
                   <span className="order_user_name">Max Mit</span>
@@ -136,7 +144,7 @@ export function VisitMyPage(props: any) {
                   <p className="follows">Followers: 3</p>
                   <p className="follows">Followings: 2</p>
                 </Box>
-                <p className="user_desc">"Qo'shimcha ma'lumot kiritilmagan"</p>
+                <p className="user_desc">"No additional info"</p>
                 <Box
                   display={"flex"}
                   justifyContent={"flex-end"}
@@ -154,7 +162,7 @@ export function VisitMyPage(props: any) {
                           variant="contained"
                           onClick={() => setValue("4")}
                         >
-                          Maqola Yozish
+                          Create an Article
                         </Button>
                       )}
                     />
@@ -167,36 +175,52 @@ export function VisitMyPage(props: any) {
                   onChange={handleChange}
                   aria-label="lab API tabs example"
                 >
-                  <Tab
-                    style={{ flexDirection: "column" }}
-                    value={"1"}
-                    component={() => (
-                      <div className={`menu_box ${value}`}>
-                        <img src="/icons/pencil.svg" alt="" />
-                        <span>Maqolalarim</span>
-                      </div>
-                    )}
-                  />
-                  <Tab
-                    style={{ flexDirection: "column" }}
-                    value={"2"}
-                    component={() => (
-                      <div className={`menu_box ${value}`}>
-                        <img src="/icons/group.svg" alt="" />
-                        <span>Follower</span>
-                      </div>
-                    )}
-                  />
-                  <Tab
-                    style={{ flexDirection: "column" }}
-                    value={"3"}
-                    component={() => (
-                      <div className={`menu_box ${value}`}>
-                        <img src="/icons/user.svg" alt="" />
-                        <span>Following</span>
-                      </div>
-                    )}
-                  />
+                  <Stack flexDirection={"column"}>
+                    <Box width="100%">
+                      <Tab
+                        value={"1"}
+                        component={() => (
+                          <div
+                            className={`menu_box ${value}`}
+                            onClick={() => setValue("1")}
+                          >
+                            <CreateOutlinedIcon />
+                            <span>My Articles</span>
+                          </div>
+                        )}
+                      />
+                    </Box>
+                    <Box>
+                      <Tab
+                        style={{ flexDirection: "column" }}
+                        value={"2"}
+                        component={() => (
+                          <div
+                            className={`menu_box ${value}`}
+                            onClick={() => setValue("2")}
+                          >
+                            <GroupOutlinedIcon />
+                            <span>Follower</span>
+                          </div>
+                        )}
+                      />
+                    </Box>
+                    <Box>
+                      <Tab
+                        style={{ flexDirection: "column" }}
+                        value={"3"}
+                        component={() => (
+                          <div
+                            className={`menu_box ${value}`}
+                            onClick={() => setValue("3")}
+                          >
+                            <PersonOutlineOutlinedIcon />
+                            <span>Following</span>
+                          </div>
+                        )}
+                      />
+                    </Box>
+                  </Stack>
                 </TabList>
               </Box>
             </Stack>

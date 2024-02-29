@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Container, Stack } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 
 const followers = [
   { mb_nick: "Martin", following: true },
@@ -13,7 +14,7 @@ export function MemberFollowers(props: any) {
   return (
     <Stack>
       {followers.map((follower) => {
-        const image_url = "/images/blogs/blog_user2.jpg";
+        const image_url = "/images/article/article_user.jpg";
         return (
           <Box className={"follow_box"}>
             <Avatar src={image_url} sx={{ width: 89, height: 89 }} />
@@ -36,14 +37,12 @@ export function MemberFollowers(props: any) {
                   className="following_already"
                   disabled
                 >
-                  FOLLOWING
+                  Following
                 </Button>
               ) : (
                 <Button
                   variant="contained"
-                  startIcon={
-                    <img src="/icons/user.svg" style={{ width: "40px" }} />
-                  }
+                  startIcon={<PersonAddAltOutlinedIcon />}
                   className="follow_btn"
                 >
                   Follow back

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Container, Stack } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 
 const followings = [
   { mb_nick: "Martin" },
@@ -32,12 +33,7 @@ export function MemberFollowing(props: any) {
             {props.actions_enabled && (
               <Button
                 variant="contained"
-                startIcon={
-                  <img
-                    src="/icons/user.svg"
-                    style={{ width: "40px", marginLeft: "16px" }}
-                  />
-                }
+                startIcon={<PersonAddAltOutlinedIcon />}
                 className="follow_cancel_btn"
               >
                 Unfollow

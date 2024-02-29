@@ -36,28 +36,28 @@ export function MemberPosts(props: any) {
               <Box>
                 <Box
                   className={"article_share"}
-                  style={{ width: "100%", height: "auto" }}
-                  sx={{ mb: "10px" }}
+                  style={{ width: "100%", height: "auto", color: "#fff" }}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    mb: "10px",
+                    gap: 2,
+                  }}
                 >
-                  <Box
-                    className={"article_share_main"}
-                    style={{
-                      color: "#fff",
-                      marginLeft: "150px",
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <span>moment().format('MMMM Do YYYY, h:mm:ss a')</span>
+                  <Box>{moment().startOf("hour").fromNow()}</Box>
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
                     <Checkbox
                       sx={{ ml: "40px" }}
                       icon={<Favorite />}
                       checkedIcon={<Favorite style={{ color: "red" }} />}
                       checked={false}
                     />
-                    <span style={{ marginRight: "10px" }}>100</span>
-                    <RemoveRedEyeIcon />
-                    <span style={{ marginLeft: "10px" }}>1000</span>
+                    100
+                  </Box>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <RemoveRedEyeIcon /> 100
                   </Box>
                 </Box>
               </Box>
