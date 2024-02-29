@@ -1,5 +1,14 @@
 import React from "react";
-import { Box, Link, Stack } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Link,
+  Stack,
+  Typography,
+} from "@mui/material";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
@@ -76,6 +85,7 @@ export function TargetArticles(props: any) {
                 </Box>
               </Box>
             </Box>
+            
           </Link>
         );
       })}
