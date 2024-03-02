@@ -1,16 +1,12 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box, Container, Stack } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import SettingsIcon from "@mui/icons-material/Settings";
+
 import Button from "@mui/material/Button";
 import Tab from "@mui/material/Tab";
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 import { MemberPosts } from "./memberPosts";
 import { MemberFollowers } from "./memberFollowers";

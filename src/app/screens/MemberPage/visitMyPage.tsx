@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box, Container, Stack } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -120,7 +120,11 @@ export function VisitMyPage(props: any) {
             {/* My Page Right Side */}
             <Stack className="my_page_right">
               <Box className="order_info_box">
-                <a onClick={() => setValue("6")} className="settings_btn">
+                <a
+                  href="#"
+                  onClick={() => setValue("6")}
+                  className="settings_btn"
+                >
                   <SettingsIcon />
                 </a>
                 <Box
