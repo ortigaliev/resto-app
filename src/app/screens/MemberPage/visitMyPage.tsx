@@ -94,7 +94,7 @@ export function VisitMyPage(props: any) {
                   <Box className={"write_content"}></Box>
                 </TabPanel>
 
-                {/* Cosen Article */}
+                {/* Chosen Article */}
                 <TabPanel value={"5"}>
                   <Box className={"menu_name"}>Chosen Article</Box>
                   <Box className={"menu_content"}></Box>
