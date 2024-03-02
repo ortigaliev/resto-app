@@ -23,9 +23,11 @@ import PersonIcon from "@mui/icons-material/Person";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import PeopleIcon from "@mui/icons-material/People";
 
+import TViewer from "../../components/tuiEditor/tViewer";
+
 export function VisitOtherPage(_props: any) {
   //INITIALIZIATION
-  const [value, setValue] = useState("1");
+  const [value, setValue] = useState("4");
 
   // HANDLERS
   const handleChange = (_event: any, newValue: string) => {
@@ -61,7 +63,9 @@ export function VisitOtherPage(_props: any) {
 
                 <TabPanel value={"4"}>
                   <Box className={"menu_name"}>Chosen Article</Box>
-                  <Box className={"menu_content"}></Box>
+                  <Box className={"menu_content"}>
+                    <TViewer text={`<h3>Hello</h3>`} />
+                  </Box>
                 </TabPanel>
               </Box>
             </Stack>
@@ -110,7 +114,7 @@ export function VisitOtherPage(_props: any) {
                       <Tab
                         style={{ flexDirection: "column" }}
                         value={"4"}
-                        component={(e) => (
+                        component={() => (
                           <Button
                             variant="contained"
                             style={{ backgroundColor: "#f70909b8" }}
@@ -123,7 +127,7 @@ export function VisitOtherPage(_props: any) {
                       <Tab
                         style={{ flexDirection: "column" }}
                         value={"4"}
-                        component={(e) => (
+                        component={() => (
                           <Button
                             variant="contained"
                             style={{ backgroundColor: "#30945e" }}
@@ -146,7 +150,7 @@ export function VisitOtherPage(_props: any) {
                     <Box>
                       <Tab
                         value={"1"}
-                        component={(e) => (
+                        component={() => (
                           <div
                             className={`menu_box ${value}`}
                             onClick={() => setValue("1")}

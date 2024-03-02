@@ -24,6 +24,9 @@ import { TabList } from "@material-ui/lab";
 import TabPanel from "@material-ui/lab/TabPanel";
 import TabContext from "@material-ui/lab/TabContext";
 
+import { TuiEditor } from "../../components/tuiEditor/tuiEditor";
+import TViewer from "../../components/tuiEditor/tViewer";
+
 export function VisitMyPage(props: any) {
   //INITIALIZIATION
   const [value, setValue] = useState("1");
@@ -91,13 +94,17 @@ export function VisitMyPage(props: any) {
                 {/* Create an article */}
                 <TabPanel value={"4"}>
                   <Box className={"menu_name"}>Create an Artice</Box>
-                  <Box className={"write_content"}></Box>
+                  <Box className={"write_content"}>
+                    <TuiEditor />
+                  </Box>
                 </TabPanel>
 
                 {/* Chosen Article */}
                 <TabPanel value={"5"}>
                   <Box className={"menu_name"}>Chosen Article</Box>
-                  <Box className={"menu_content"}></Box>
+                  <Box className={"menu_content"}>
+                    <TViewer text={`<h3>Hello</h3>`} />
+                  </Box>
                 </TabPanel>
 
                 {/* Setting */}
@@ -175,7 +182,7 @@ export function VisitMyPage(props: any) {
                   onChange={handleChange}
                   aria-label="lab API tabs example"
                 >
-                  <Stack flexDirection={"column"}>
+                  <Stack flexDirection={"column"} width={372}>
                     <Box width="100%">
                       <Tab
                         value={"1"}
@@ -190,6 +197,7 @@ export function VisitMyPage(props: any) {
                         )}
                       />
                     </Box>
+
                     <Box>
                       <Tab
                         style={{ flexDirection: "column" }}
@@ -205,6 +213,7 @@ export function VisitMyPage(props: any) {
                         )}
                       />
                     </Box>
+
                     <Box>
                       <Tab
                         style={{ flexDirection: "column" }}
