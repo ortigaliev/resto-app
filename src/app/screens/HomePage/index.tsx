@@ -1,5 +1,5 @@
-import { Container } from "@mui/material";
-import React from "react";
+
+import React, { useEffect } from "react";
 import { Statistics } from "./statistics";
 import { TopRestaurants } from "./topRestaurants";
 import { BestRestaurants } from "./bestRestaurants";
@@ -9,6 +9,14 @@ import { Events } from "./events";
 import { Recommendation } from "./recommendation";
 import "../../../css/home.css";
 export function Home() {
+
+  //selector: store => data
+
+  useEffect(() => {
+    //backend data request => data
+    //slice: data => store
+  }, []);
+
   return (
     <div className="homepage">
       <Statistics />
