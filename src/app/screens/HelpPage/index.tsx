@@ -132,7 +132,7 @@ export function HelpPage() {
                           <Typography>{ele.question}</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                          <Typography>{ele.question}</Typography>
+                          <Typography>{ele.answer}</Typography>
                         </AccordionDetails>
                       </Accordion>
                     );

@@ -21,9 +21,14 @@ import PeopleIcon from "@mui/icons-material/People";
 
 import TViewer from "../../components/tuiEditor/tViewer";
 
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
 export function VisitOtherPage(_props: any) {
   //INITIALIZIATION
-  const [value, setValue] = useState("4");
+  const [value, setValue] = useState("1");
 
   // HANDLERS
   const handleChange = (_event: any, newValue: string) => {
@@ -41,8 +46,33 @@ export function VisitOtherPage(_props: any) {
                   <Box className="menu_name">Articles</Box>
                   <Box className="menu_content">
                     <MemberPosts />
+                    <Stack
+                      sx={{ my: "40px" }}
+                      direction={"row"}
+                      alignItems={"center"}
+                      justifyContent={"center"}
+                    >
+                      <Box className={"bottom_box"}>
+                        <Pagination
+                          count={3}
+                          page={1}
+                          renderItem={(item) => (
+                            <PaginationItem
+                              components={{
+                                previous: ArrowBackIcon,
+                                next: ArrowForwardIcon,
+                              }}
+                              {...item}
+                              color="secondary"
+                            />
+                          )}
+                        />
+                      </Box>
+                    </Stack>
                   </Box>
                 </TabPanel>
+
+                {/* Other Followers */}
                 <TabPanel value={"2"}>
                   <Box className={"menu_name"}>Followers</Box>
                   <Box className={"menu_content"}>
@@ -50,6 +80,7 @@ export function VisitOtherPage(_props: any) {
                   </Box>
                 </TabPanel>
 
+                {/* Others Following */}
                 <TabPanel value={"3"}>
                   <Box className={"menu_name"}>Following</Box>
                   <Box className={"menu_content"}>
@@ -57,6 +88,7 @@ export function VisitOtherPage(_props: any) {
                   </Box>
                 </TabPanel>
 
+                {/* Others Chosen Article */}
                 <TabPanel value={"4"}>
                   <Box className={"menu_name"}>Chosen Article</Box>
                   <Box className={"menu_content"}>
@@ -66,6 +98,7 @@ export function VisitOtherPage(_props: any) {
               </Box>
             </Stack>
 
+            {/* Others Right Side */}
             <Stack className="my_page_right">
               <Box className="order_info_box">
                 <Box

@@ -27,14 +27,13 @@ import TabContext from "@material-ui/lab/TabContext";
 import { TuiEditor } from "../../components/tuiEditor/tuiEditor";
 import TViewer from "../../components/tuiEditor/tViewer";
 
-export function VisitMyPage(props: any) {
+export function VisitMyPage(_props: any) {
   //INITIALIZIATION
   const [value, setValue] = useState("1");
 
   // HANDLERS
-  const handleChange = (event: any, newValue: string) => {
+  const handleChange = (_event: any, newValue: string) => {
     setValue(newValue);
-    console.log("newValue: ", newValue);
   };
 
   return (
