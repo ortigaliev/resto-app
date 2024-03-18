@@ -1,6 +1,6 @@
 import { Container } from "@mui/material";
 import React from "react";
-import ads_video from "../../../../src/assets/ads_video.mp4";
+import ads_video from "../../../../src/assets/Resto_video.mp4";
 
 export function Advertisements() {
   return (
