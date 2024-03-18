@@ -14,7 +14,24 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import CallIcon from "@mui/icons-material/Call";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
+//Redux
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveBestRestaurants } from "./selector";
+import { Restaurant } from "../../../types/user";
+import { serviceApi } from "../../../lib/config";
+
+// REDUX SELECTOR
+const bestRestaurantRetriever = createSelector(
+  retrieveBestRestaurants,
+  (bestRestaurants) => ({
+    bestRestaurants,
+  })
+);
+
 export function BestRestaurants() {
+  //INITIALIZATION
+  const { bestRestaurants } = useSelector(bestRestaurantRetriever);
   return (
     <div className="best_restaurant_frame">
       <img
@@ -32,395 +49,106 @@ export function BestRestaurants() {
             Best Restaurants
           </Box>
           <Stack sx={{ mt: "43px", flexDirection: "row" }}>
-            <CssVarsProvider>
-              <Card variant="outlined" sx={{ minWidth: 320, mr: "35px" }}>
-                <CardOverflow>
-                  <AspectRatio ratio="1">
-                    <img
-                      src="/images/resto/burak.jpg"
-                      alt="Best restaurantimg"
-                    />
-                  </AspectRatio>
-                  <IconButton
-                    aria-label="Like minimal photography"
-                    size="md"
-                    variant="solid"
-                    color="neutral"
-                    sx={{
-                      position: "absolute",
-                      zIndex: 2,
-                      borderRadius: "50%",
-                      right: "1rem",
-                      bottom: 0,
-                      transform: "translateY(50%)",
-                      color: "rgba(0,0,0,.4)",
-                    }}
-                  >
-                    <Favorite style={{ color: "white" }} />
-                  </IconButton>
-                </CardOverflow>
+            {bestRestaurants.map((ele: Restaurant) => {
+              const image_path = `${serviceApi}/${ele.mb_image}`;
+              return (
+                <CssVarsProvider>
+                  <Card variant="outlined" sx={{ minWidth: 320, mr: "35px" }}>
+                    <CardOverflow>
+                      <AspectRatio ratio="1">
+                        <img src={image_path} alt="Best restaurantimg" />
+                      </AspectRatio>
+                      <IconButton
+                        aria-label="Like minimal photography"
+                        size="md"
+                        variant="solid"
+                        color="neutral"
+                        sx={{
+                          position: "absolute",
+                          zIndex: 2,
+                          borderRadius: "50%",
+                          right: "1rem",
+                          bottom: 0,
+                          transform: "translateY(50%)",
+                          color: "rgba(0,0,0,.4)",
+                        }}
+                      >
+                        <Favorite style={{ color: "white" }} />
+                      </IconButton>
+                    </CardOverflow>
 
-                <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
-                  Uzum
-                </Typography>
-                <Typography sx={{ mt: 0.5, mb: 2 }}>
-                  <Link
-                    href=""
-                    startDecorator={<LocationOnRoundedIcon />}
-                    textColor="neutral.700"
-                  >
-                    Tashkent, Yunus Abad 4-1
-                  </Link>
-                </Typography>
-                <Typography sx={{ mt: 0.5, mb: 2 }}>
-                  <Link
-                    href=""
-                    startDecorator={<CallIcon />}
-                    textColor="neutral.700"
-                  >
-                    +99890 7314578
-                  </Link>
-                </Typography>
-                <CardOverflow
-                  variant="soft"
-                  sx={{
-                    display: "flex",
-                    gap: 1.5,
-                    py: 1.5,
-                    px: "var(--Card-padding)",
-                    borderTop: "1px solid",
-                    borderColor: "neutral.outlinedBorder",
-                    bgcolor: "background.level1",
-                  }}
-                >
-                  <Stack flexDirection={"row"}>
-                    <Typography
+                    <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
+                      {ele.mb_nick}
+                    </Typography>
+                    <Typography sx={{ mt: 0.5, mb: 2 }}>
+                      <Link
+                        href=""
+                        startDecorator={<LocationOnRoundedIcon />}
+                        textColor="neutral.700"
+                      >
+                        {ele.mb_address}
+                      </Link>
+                    </Typography>
+                    <Typography sx={{ mt: 0.5, mb: 2 }}>
+                      <Link
+                        href=""
+                        startDecorator={<CallIcon />}
+                        textColor="neutral.700"
+                      >
+                        {ele.mb_phone}
+                      </Link>
+                    </Typography>
+                    <CardOverflow
+                      variant="soft"
                       sx={{
-                        fontWeight: "md",
-                        color: "neutral.300",
-                        alignItems: "center",
                         display: "flex",
+                        gap: 1.5,
+                        py: 1.5,
+                        px: "var(--Card-padding)",
+                        borderTop: "1px solid",
+                        borderColor: "neutral.outlinedBorder",
+                        bgcolor: "background.level1",
                       }}
                     >
-                      <div>100 </div>
-                      <VisibilityIcon
-                        sx={{ fontSize: 20, marginLeft: "5px" }}
-                      />
-                    </Typography>
-                    <Box
-                      sx={{
-                        width: 2,
-                        bgcolor: "divider",
-                        ml: "11px",
-                        mr: "11px",
-                      }}
-                    ></Box>
-                    <Typography
-                      sx={{
-                        fontWeight: "md",
-                        color: "neutral.300",
-                        alignItems: "center",
-                        display: "flex",
-                      }}
-                    >
-                      <div>50</div>
-                      <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
-                    </Typography>
-                  </Stack>
-                </CardOverflow>
-              </Card>
-
-              <Card variant="outlined" sx={{ minWidth: 320, mr: "35px" }}>
-                <CardOverflow>
-                  <AspectRatio ratio="1">
-                    <img
-                      src="/images/resto/burak.jpg"
-                      alt="Best restaurantimg"
-                    />
-                  </AspectRatio>
-                  <IconButton
-                    aria-label="Like minimal photography"
-                    size="md"
-                    variant="solid"
-                    color="neutral"
-                    sx={{
-                      position: "absolute",
-                      zIndex: 2,
-                      borderRadius: "50%",
-                      right: "1rem",
-                      bottom: 0,
-                      transform: "translateY(50%)",
-                      color: "rgba(0,0,0,.4)",
-                    }}
-                  >
-                    <Favorite style={{ color: "white" }} />
-                  </IconButton>
-                </CardOverflow>
-
-                <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
-                  Uzum
-                </Typography>
-                <Typography sx={{ mt: 0.5, mb: 2 }}>
-                  <Link
-                    href=""
-                    startDecorator={<LocationOnRoundedIcon />}
-                    textColor="neutral.700"
-                  >
-                    Tashkent, Yunus Abad 4-1
-                  </Link>
-                </Typography>
-                <Typography sx={{ mt: 0.5, mb: 2 }}>
-                  <Link
-                    href=""
-                    startDecorator={<CallIcon />}
-                    textColor="neutral.700"
-                  >
-                    +99890 7314578
-                  </Link>
-                </Typography>
-                <CardOverflow
-                  variant="soft"
-                  sx={{
-                    display: "flex",
-                    gap: 1.5,
-                    py: 1.5,
-                    px: "var(--Card-padding)",
-                    borderTop: "1px solid",
-                    borderColor: "neutral.outlinedBorder",
-                    bgcolor: "background.level1",
-                  }}
-                >
-                  <Stack flexDirection={"row"}>
-                    <Typography
-                      sx={{
-                        fontWeight: "md",
-                        color: "neutral.300",
-                        alignItems: "center",
-                        display: "flex",
-                      }}
-                    >
-                      <div>100 </div>
-                      <VisibilityIcon
-                        sx={{ fontSize: 20, marginLeft: "5px" }}
-                      />
-                    </Typography>
-                    <Box
-                      sx={{
-                        width: 2,
-                        bgcolor: "divider",
-                        ml: "11px",
-                        mr: "11px",
-                      }}
-                    ></Box>
-                    <Typography
-                      sx={{
-                        fontWeight: "md",
-                        color: "neutral.300",
-                        alignItems: "center",
-                        display: "flex",
-                      }}
-                    >
-                      <div>50</div>
-                      <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
-                    </Typography>
-                  </Stack>
-                </CardOverflow>
-              </Card>
-
-              <Card variant="outlined" sx={{ minWidth: 320, mr: "35px" }}>
-                <CardOverflow>
-                  <AspectRatio ratio="1">
-                    <img
-                      src="/images/resto/burak.jpg"
-                      alt="Best restaurantimg"
-                    />
-                  </AspectRatio>
-                  <IconButton
-                    aria-label="Like minimal photography"
-                    size="md"
-                    variant="solid"
-                    color="neutral"
-                    sx={{
-                      position: "absolute",
-                      zIndex: 2,
-                      borderRadius: "50%",
-                      right: "1rem",
-                      bottom: 0,
-                      transform: "translateY(50%)",
-                      color: "rgba(0,0,0,.4)",
-                    }}
-                  >
-                    <Favorite style={{ color: "white" }} />
-                  </IconButton>
-                </CardOverflow>
-
-                <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
-                  Uzum
-                </Typography>
-                <Typography sx={{ mt: 0.5, mb: 2 }}>
-                  <Link
-                    href=""
-                    startDecorator={<LocationOnRoundedIcon />}
-                    textColor="neutral.700"
-                  >
-                    Tashkent, Yunus Abad 4-1
-                  </Link>
-                </Typography>
-                <Typography sx={{ mt: 0.5, mb: 2 }}>
-                  <Link
-                    href=""
-                    startDecorator={<CallIcon />}
-                    textColor="neutral.700"
-                  >
-                    +99890 7314578
-                  </Link>
-                </Typography>
-                <CardOverflow
-                  variant="soft"
-                  sx={{
-                    display: "flex",
-                    gap: 1.5,
-                    py: 1.5,
-                    px: "var(--Card-padding)",
-                    borderTop: "1px solid",
-                    borderColor: "neutral.outlinedBorder",
-                    bgcolor: "background.level1",
-                  }}
-                >
-                  <Stack flexDirection={"row"}>
-                    <Typography
-                      sx={{
-                        fontWeight: "md",
-                        color: "neutral.300",
-                        alignItems: "center",
-                        display: "flex",
-                      }}
-                    >
-                      <div>100 </div>
-                      <VisibilityIcon
-                        sx={{ fontSize: 20, marginLeft: "5px" }}
-                      />
-                    </Typography>
-                    <Box
-                      sx={{
-                        width: 2,
-                        bgcolor: "divider",
-                        ml: "11px",
-                        mr: "11px",
-                      }}
-                    ></Box>
-                    <Typography
-                      sx={{
-                        fontWeight: "md",
-                        color: "neutral.300",
-                        alignItems: "center",
-                        display: "flex",
-                      }}
-                    >
-                      <div>50</div>
-                      <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
-                    </Typography>
-                  </Stack>
-                </CardOverflow>
-              </Card>
-
-              <Card variant="outlined" sx={{ minWidth: 320, mr: "35px" }}>
-                <CardOverflow>
-                  <AspectRatio ratio="1">
-                    <img
-                      src="/images/resto/burak.jpg"
-                      alt="Best restaurantimg"
-                    />
-                  </AspectRatio>
-                  <IconButton
-                    aria-label="Like minimal photography"
-                    size="md"
-                    variant="solid"
-                    color="neutral"
-                    sx={{
-                      position: "absolute",
-                      zIndex: 2,
-                      borderRadius: "50%",
-                      right: "1rem",
-                      bottom: 0,
-                      transform: "translateY(50%)",
-                      color: "rgba(0,0,0,.4)",
-                    }}
-                  >
-                    <Favorite style={{ color: "white" }} />
-                  </IconButton>
-                </CardOverflow>
-
-                <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
-                  Uzum
-                </Typography>
-                <Typography sx={{ mt: 0.5, mb: 2 }}>
-                  <Link
-                    href=""
-                    startDecorator={<LocationOnRoundedIcon />}
-                    textColor="neutral.700"
-                  >
-                    Tashkent, Yunus Abad 4-1
-                  </Link>
-                </Typography>
-                <Typography sx={{ mt: 0.5, mb: 2 }}>
-                  <Link
-                    href=""
-                    startDecorator={<CallIcon />}
-                    textColor="neutral.700"
-                  >
-                    +99890 7314578
-                  </Link>
-                </Typography>
-                <CardOverflow
-                  variant="soft"
-                  sx={{
-                    display: "flex",
-                    gap: 1.5,
-                    py: 1.5,
-                    px: "var(--Card-padding)",
-                    borderTop: "1px solid",
-                    borderColor: "neutral.outlinedBorder",
-                    bgcolor: "background.level1",
-                  }}
-                >
-                  <Stack flexDirection={"row"}>
-                    <Typography
-                      sx={{
-                        fontWeight: "md",
-                        color: "neutral.300",
-                        alignItems: "center",
-                        display: "flex",
-                      }}
-                    >
-                      <div>100 </div>
-                      <VisibilityIcon
-                        sx={{ fontSize: 20, marginLeft: "5px" }}
-                      />
-                    </Typography>
-                    <Box
-                      sx={{
-                        width: 2,
-                        bgcolor: "divider",
-                        ml: "11px",
-                        mr: "11px",
-                      }}
-                    ></Box>
-                    <Typography
-                      sx={{
-                        fontWeight: "md",
-                        color: "neutral.300",
-                        alignItems: "center",
-                        display: "flex",
-                      }}
-                    >
-                      <div>50</div>
-                      <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
-                    </Typography>
-                  </Stack>
-                </CardOverflow>
-              </Card>
-            </CssVarsProvider>
+                      <Stack flexDirection={"row"}>
+                        <Typography
+                          sx={{
+                            fontWeight: "md",
+                            color: "neutral.300",
+                            alignItems: "center",
+                            display: "flex",
+                          }}
+                        >
+                          <div>{ele.mb_views} </div>
+                          <VisibilityIcon
+                            sx={{ fontSize: 20, marginLeft: "5px" }}
+                          />
+                        </Typography>
+                        <Box
+                          sx={{
+                            width: 2,
+                            bgcolor: "divider",
+                            ml: "11px",
+                            mr: "11px",
+                          }}
+                        ></Box>
+                        <Typography
+                          sx={{
+                            fontWeight: "md",
+                            color: "neutral.300",
+                            alignItems: "center",
+                            display: "flex",
+                          }}
+                        >
+                          <div>{ele.mb_likes}</div>
+                          <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
+                        </Typography>
+                      </Stack>
+                    </CardOverflow>
+                  </Card>
+                </CssVarsProvider>
+              );
+            })}
           </Stack>
           <Stack
             flexDirection={"row"}
