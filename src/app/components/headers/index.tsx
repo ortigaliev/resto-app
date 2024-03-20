@@ -82,6 +82,7 @@ export function NavbarHome(props: any) {
                   background: "#1976d2",
                   color: "#fff",
                 }}
+                onClick={props.handleLoginOpen}
               >
                 SIGN IN
               </Button>
@@ -110,6 +111,7 @@ export function NavbarHome(props: any) {
                   background: "#1976d2",
                   color: "#fff",
                 }}
+                onClick={props.handleSignUpOpen}
               >
                 SIGN UP
               </Button>

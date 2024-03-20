@@ -5,7 +5,7 @@ import { serverApi as serverApi } from "../../lib/config";
 import { Restaurant } from "../../types/user";
 import { SearchObj } from "../../types/others";
 
-class RestaurantApiService {
+class RestaurantApiServer {
   private readonly path: string;
 
   constructor() {
@@ -42,4 +42,4 @@ class RestaurantApiService {
   }
 }
 
-export default RestaurantApiService;
+export default RestaurantApiServer;

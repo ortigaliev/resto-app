@@ -10,7 +10,7 @@ import { createSelector } from "reselect";
 import { setTrendProducts } from "./slice";
 import { retrieveTrendProducts } from "./selector";
 import { Product } from "../../../types/product";
-import ProductApiService from "../../apiServices/productApiService";
+import ProductApiService from "../../apiServer/productApiServer";
 import { serverApi } from "../../../lib/config";
 
 const actionDispatch = (dispach: Dispatch) => ({
