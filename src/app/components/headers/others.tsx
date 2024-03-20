@@ -4,10 +4,14 @@ import {
   Button,
   Container,
   IconButton,
+  ListItemIcon,
+  Menu,
+  MenuItem,
   Stack,
 } from "@mui/material";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 export function NavbarOthers(props: any) {
   return (
@@ -19,7 +23,6 @@ export function NavbarOthers(props: any) {
           justifyContent={"space-between"}
         >
           <Box>
-            {" "}
             <img src="/icons/papay_logo.svg" alt="papayLogo" />{" "}
           </Box>
 
@@ -50,9 +53,16 @@ export function NavbarOthers(props: any) {
                 Community
               </NavLink>
             </Box>
+            {props.verifiedMemberData ? (
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/member-page" activeClassName="underline">
+                  My page
+                </NavLink>
+              </Box>
+            ) : null}
 
             <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/help" activeClassName="underline">
+              <NavLink to={"/help"} activeClassName="underline">
                 Help
               </NavLink>
             </Box>
@@ -71,21 +81,65 @@ export function NavbarOthers(props: any) {
                 <img src="/icons/shopping_cart.svg" alt="Shopping Cart" />
               </Badge>
             </Box>
-            <Box>
-              <Button
-                className="hover-line"
-                variant="contained"
-                style={{
-                  width: "77pxpx",
-                  height: "36px",
-                  background: "#1976d2",
-                  color: "#fff",
-                }}
-                onClick={props.handleLoginOpen}
-              >
-                SIGN IN
-              </Button>
-            </Box>
+            {!props.verifiedMemberData ? (
+              <Box>
+                <Button
+                  variant="contained"
+                  style={{ color: "#ffffff", background: "#1976d2" }}
+                  onClick={props.handleLoginOpen}
+                >
+                  Sign In
+                </Button>
+              </Box>
+            ) : (
+              <img
+                style={{ width: "48px", height: "48px", borderRadius: "24px" }}
+                src={props.verifiedMemberData.mb_image}
+                onClick={props.handleLogOutClick}
+              />
+            )}
+
+            <Menu
+              anchorEl={props.anchorEl}
+              open={props.open}
+              onClose={props.handleCloseLogOut}
+              onClick={props.handleCloseLogOut}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: "visible",
+                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                  mt: 1.5,
+                  "& .MuiAvatar-root": {
+                    width: 32,
+                    height: 32,
+                    ml: -0.5,
+                    mr: 1,
+                  },
+                  "&:before": {
+                    content: '""',
+                    display: "block",
+                    position: "absolute",
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: "background.paper",
+                    transform: "translateY(-50%) rotate(45deg)",
+                    zIndex: 0,
+                  },
+                },
+              }}
+              transformOrigin={{ horizontal: "right", vertical: "top" }}
+              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+            >
+              <MenuItem onClick={props.handleLogOutRequest}>
+                <ListItemIcon>
+                  <LogoutIcon fontSize="small" style={{ color: "blue" }} />
+                </ListItemIcon>
+                Logout
+              </MenuItem>
+            </Menu>
           </Stack>
         </Stack>
       </Container>
