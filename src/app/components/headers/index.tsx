@@ -19,8 +19,7 @@ export function NavbarHome(props: any) {
           justifyContent={"space-between"}
         >
           <Box>
-            {" "}
-            <img src="/icons/papay_logo.svg" alt="papayLogo" />{" "}
+            <img src="/icons/papay_logo.svg" alt="papayLogo" />
           </Box>
 
           <Stack
