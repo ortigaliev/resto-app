@@ -21,6 +21,8 @@ import { sweetErrorHandling } from "../../../lib/sweetAlert";
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import MemberApiServer from "../../apiServer/memberApiServer";
+import { useHistory } from "react-router-dom";
+
 // REDUX SELECTOR
 const topRestaurantRetriever = createSelector(
   retrieveTopRestaurants,
@@ -31,11 +33,15 @@ const topRestaurantRetriever = createSelector(
 
 export function TopRestaurants() {
   //INITIALIZATION
+  const history = useHistory();
   const { topRestaurants } = useSelector(topRestaurantRetriever);
   console.log("topRestaurants::", topRestaurants);
   const refs: any = useRef([]);
 
   /**HANDLERS */
+  const chosenRestaurantHandler = (id: string) => {
+    history.push(`/restaurant/${id}`);
+  };
 
   const targetLikeTop = async (e: any, id: string) => {
     try {
@@ -74,7 +80,7 @@ export function TopRestaurants() {
               const image_path = `${serverApi}/${ele.mb_image}`;
               return (
                 <CssVarsProvider key={ele._id}>
-                  <Card
+                  <Card onClick = {() => chosenRestaurantHandler(ele._id)}
                     sx={{
                       minHeight: 430,
                       width: 320,
