@@ -6,7 +6,7 @@ import Favorite from "@mui/icons-material/Favorite";
 import CallIcon from "@mui/icons-material/Call";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   AspectRatio,
   Card,
@@ -27,8 +27,18 @@ import { Restaurant } from "../../../types/user";
 import { retrieveTargetRestaurants } from "./selector";
 import { setTargetRestaurants } from "./slice";
 import { useDispatch, useSelector } from "react-redux";
+import RestaurantApiServer from "../../apiServer/restaurantApiServer";
+import assert from "assert";
+import MemberApiServer from "../../apiServer/memberApiServer";
+import { Definer } from "../../../lib/Definer";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import { serverApi } from "../../../lib/config";
+import { SearchObj } from "../../../types/others";
 
-const order_list = Array.from(Array(4).keys());
+
 // REDUX SLICE
 const actionDispatch = (dispach: Dispatch) => ({
   setTargetRestaurants: (data: Restaurant[]) =>
@@ -47,21 +57,69 @@ export function AllRestaurants() {
   /**INITIALIZATIONS */
   const { setTargetRestaurants } = actionDispatch(useDispatch());
   const { targetRestaurants } = useSelector(targetRestaurantsRetriever);
+  const [targetSearchObject, setTargetSearchObject] = useState<SearchObj>({
+    page: 1,
+    limit: 8,
+    order: "mb_point",
+  });
+
+  const refs: any = useRef([]);
 
   useEffect(() => {
-    //TODO: Retrieve targetRestaurantsdata
-  }, []);
+    const restaurantService = new RestaurantApiServer();
+    restaurantService
+      .getRestaurants(targetSearchObject)
+      .then((data) => setTargetRestaurants(data))
+      .catch((err) => console.log(err));
+  }, [targetSearchObject]);
+
+  /**HANDLERS */
+  const searchHandler = (category: string) => {
+    targetSearchObject.page = 1;
+    targetSearchObject.order = category;
+    setTargetSearchObject({ ...targetSearchObject });
+  };
+
+  const handlePaginationChange = (event: any, value: number) => {
+    targetSearchObject.page = value;
+    setTargetSearchObject({ ...targetSearchObject });
+  };
+  const targetLikeHandler = async (e: any, id: string) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+
+      const memberService = new MemberApiServer(),
+        like_result = await memberService.memberLikeTarget({
+          like_ref_id: id,
+          group_type: "member",
+        });
+      assert.ok(like_result, Definer.general_err1);
+
+      if (like_result.like_status > 0) {
+        e.target.style.fill = "red";
+        refs.current[like_result.like_ref_id].innerHTML++;
+      } else {
+        e.target.style.fill = "white";
+        refs.current[like_result.like_ref_id].innerHTML--;
+      }
+
+      await sweetTopSmallSuccessAlert("success", 700, false);
+    } catch (err: any) {
+      console.log("targetLikeTop, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <div className="all_restaurants">
       <Container>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className={"fil_search_box"}>
-            <Box className={"fil_box"}>
-              <a>Best</a>
-              <a>Popular</a>
-              <a>Trend</a>
-              <a>Latest</a>
+            <Box className={"fil_box"} style={{ cursor: "pointer" }}>
+              <a onClick={() => searchHandler("mb_point")}>Best</a>
+              <a onClick={() => searchHandler("mb_views")}>Popular</a>
+              <a onClick={() => searchHandler("mb_likes")}>Trend</a>
+              <a onClick={() => searchHandler("createdAt")}>Latest</a>
             </Box>
             <Box className={"search_big_box"}>
               <form className="search_form" action="">
@@ -84,7 +142,8 @@ export function AllRestaurants() {
 
           <Stack className="all_res_box">
             <CssVarsProvider>
-              {order_list.map((ele) => {
+              {targetRestaurants.map((ele: Restaurant) => {
+                const image_path = `${serverApi}/${ele.mb_image}`;
                 return (
                   <Card
                     variant="outlined"
@@ -97,7 +156,7 @@ export function AllRestaurants() {
                   >
                     <CardOverflow>
                       <AspectRatio ratio={"1"}>
-                        <img src="/images/resto/burak.jpg" alt="AllRestoImg" />
+                        <img src={image_path} alt="AllRestoImg" />
                       </AspectRatio>
                       <IconButton
                         aria-label="Like minimal photography"
@@ -117,19 +176,27 @@ export function AllRestaurants() {
                           color: "rgba(0,0,0,.4)",
                         }}
                       >
-                        <FavoriteIcon style={{ color: "white" }} />
+                        <Favorite
+                          onClick={(e) => targetLikeHandler(e, ele._id)}
+                          style={{
+                            fill:
+                              ele?.me_liked && ele?.me_liked[0]?.my_favorite
+                                ? "red"
+                                : "white",
+                          }}
+                        />
                       </IconButton>
                     </CardOverflow>
 
                     <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
-                      Texas De Brazil Restaurant
+                      {ele.mb_nick} restaurant
                     </Typography>
                     <Typography level="body-sm" sx={{ mt: 0.5, mb: 1 }}>
                       <Link
                         startDecorator={<LocationOnRoundedIcon />}
                         textColor={"neutral.700"}
                       >
-                        Tashkent, Yunus Abad 4-1
+                        {ele.mb_address}
                       </Link>
                     </Typography>
                     <Typography level="body-sm" sx={{ mt: 0.5, mb: 1 }}>
@@ -137,7 +204,7 @@ export function AllRestaurants() {
                         startDecorator={<CallIcon />}
                         textColor={"neutral.700"}
                       >
-                        99890 3216547
+                        {ele.mb_phone}
                       </Link>
                     </Typography>
                     <CardOverflow
@@ -162,7 +229,7 @@ export function AllRestaurants() {
                           display: "flex",
                         }}
                       >
-                        1000{" "}
+                        {ele.mb_views}
                         <VisibilityIcon
                           sx={{ fontSize: 20, marginLeft: "5px" }}
                         />
@@ -177,7 +244,11 @@ export function AllRestaurants() {
                           display: "flex",
                         }}
                       >
-                        <div>500</div>
+                        <div
+                          ref={(element) => (refs.current[ele._id] = element)}
+                        >
+                          {ele.mb_likes}
+                        </div>
                         <FavoriteIcon
                           sx={{ fontSize: 20, marginLeft: "5px" }}
                         />
@@ -196,8 +267,10 @@ export function AllRestaurants() {
               alt="right"
             />
             <Pagination
-              count={3}
-              page={1}
+              count={
+                targetSearchObject.page >= 3 ? targetSearchObject.page + 1 : 3
+              }
+              page={targetSearchObject.page}
               renderItem={(item) => (
                 <PaginationItem
                   components={{
@@ -208,6 +281,7 @@ export function AllRestaurants() {
                   color={"secondary"}
                 />
               )}
+              onChange={handlePaginationChange}
             />
             <img
               src="/icons/right_angel.svg"
